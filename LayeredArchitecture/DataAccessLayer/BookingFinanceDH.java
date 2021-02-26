@@ -20,7 +20,7 @@ public class BookingFinanceDH {
     }
 
     public BookingFinance ReadBookingFinance(int BookingFinance_ID) {
-        BookingFinance Booking_Finance = new BookingFinance(0, 0, 0, 0, 0);
+        BookingFinance Booking_Finance = new BookingFinance();
         // Code to read specific record from table and load into object Booking_Finance
         return Booking_Finance;
         // return BookingFinance object
