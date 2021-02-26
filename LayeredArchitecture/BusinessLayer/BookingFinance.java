@@ -2,12 +2,12 @@ package LayeredArchitecture.BusinessLayer;
 
 public class BookingFinance {
     private int Booking_ID;
-    private int Total_Price;
-    private int Deposit;
+    private Float Total_Price;
+    private Float Deposit;
     private int Is_Fully_Paid;
     private int Is_Deposit_Paid;
 
-    public BookingFinance(int booking_ID, int total_Price, int deposit, int is_Fully_Paid, int is_Deposit_Paid) {
+    public BookingFinance(int booking_ID, Float total_Price, Float deposit, int is_Fully_Paid, int is_Deposit_Paid) {
         Booking_ID = booking_ID;
         Total_Price = total_Price;
         Deposit = deposit;
@@ -23,19 +23,19 @@ public class BookingFinance {
         Booking_ID = booking_ID;
     }
 
-    public int getTotal_Price() {
+    public Float getTotal_Price() {
         return Total_Price;
     }
 
-    public void setTotal_Price(int total_Price) {
+    public void setTotal_Price(Float total_Price) {
         Total_Price = total_Price;
     }
 
-    public int getDeposit() {
+    public Float getDeposit() {
         return Deposit;
     }
 
-    public void setDeposit(int deposit) {
+    public void setDeposit(Float deposit) {
         Deposit = deposit;
     }
 
@@ -54,4 +54,5 @@ public class BookingFinance {
     public void setIs_Deposit_Paid(int is_Deposit_Paid) {
         Is_Deposit_Paid = is_Deposit_Paid;
     }
+
 }

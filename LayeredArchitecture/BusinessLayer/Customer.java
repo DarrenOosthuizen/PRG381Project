@@ -2,12 +2,13 @@ package LayeredArchitecture.BusinessLayer;
 
 public class Customer {
     private int Customer_ID;
-    private int Customer_Name;
-    private int Customer_Surname;
-    private int Customer_Cell;
-    private int Customer_Email;
+    private String Customer_Name;
+    private String Customer_Surname;
+    private String Customer_Cell;
+    private String Customer_Email;
 
-    public Customer(int customer_ID, int customer_Name, int customer_Surname, int customer_Cell, int customer_Email) {
+    public Customer(int customer_ID, String customer_Name, String customer_Surname, String customer_Cell,
+            String customer_Email) {
         Customer_ID = customer_ID;
         Customer_Name = customer_Name;
         Customer_Surname = customer_Surname;
@@ -23,35 +24,36 @@ public class Customer {
         Customer_ID = customer_ID;
     }
 
-    public int getCustomer_Name() {
+    public String getCustomer_Name() {
         return Customer_Name;
     }
 
-    public void setCustomer_Name(int customer_Name) {
+    public void setCustomer_Name(String customer_Name) {
         Customer_Name = customer_Name;
     }
 
-    public int getCustomer_Surname() {
+    public String getCustomer_Surname() {
         return Customer_Surname;
     }
 
-    public void setCustomer_Surname(int customer_Surname) {
+    public void setCustomer_Surname(String customer_Surname) {
         Customer_Surname = customer_Surname;
     }
 
-    public int getCustomer_Cell() {
+    public String getCustomer_Cell() {
         return Customer_Cell;
     }
 
-    public void setCustomer_Cell(int customer_Cell) {
+    public void setCustomer_Cell(String customer_Cell) {
         Customer_Cell = customer_Cell;
     }
 
-    public int getCustomer_Email() {
+    public String getCustomer_Email() {
         return Customer_Email;
     }
 
-    public void setCustomer_Email(int customer_Email) {
+    public void setCustomer_Email(String customer_Email) {
         Customer_Email = customer_Email;
     }
+
 }
