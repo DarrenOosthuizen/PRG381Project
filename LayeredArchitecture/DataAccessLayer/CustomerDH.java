@@ -1,4 +1,4 @@
-//Booking Finance Data Handler
+//Customer Data Handler
 package LayeredArchitecture.DataAccessLayer;
 
 import LayeredArchitecture.BusinessLayer.Customer;
