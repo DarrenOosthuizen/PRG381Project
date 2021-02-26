@@ -7,6 +7,9 @@ public class Customer {
     private String Customer_Cell;
     private String Customer_Email;
 
+    public Customer(){
+        
+    }
     public Customer(int customer_ID, String customer_Name, String customer_Surname, String customer_Cell,
             String customer_Email) {
         Customer_ID = customer_ID;
