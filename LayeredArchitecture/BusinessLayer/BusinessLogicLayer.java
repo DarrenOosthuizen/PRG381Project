@@ -1,6 +1,6 @@
 package LayeredArchitecture.BusinessLayer;
 
-public class BusinessLayer 
+public class BusinessLogicLayer 
 {
     
 }
