@@ -3,12 +3,11 @@ package LayeredArchitecture.BusinessLayer;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Booking 
-{
-    private int BookingID ;
+public class Booking {
+    private int BookingID;
     private int CustomerID;
     private String Customer_Name;
-    private Date DateCreated ;
+    private Date DateCreated;
     private String Booking_Status;
     private int Event_ID;
     private Date Event_Date;
@@ -16,6 +15,10 @@ public class Booking
     private int Venue_ID;
     private int Total_Adults;
     private int Total_Kids;
+
+    public Booking() {
+
+    }
 
     public Booking(int bookingID, int customerID, String customer_Name, Date dateCreated, String booking_Status,
             int event_ID, Date event_Date, Time event_Time, int venue_ID, int total_Adults, int total_Kids) {
@@ -40,6 +43,4 @@ public class Booking
                 + ", Total_Kids=" + Total_Kids + ", Venue_ID=" + Venue_ID + "]";
     }
 
-    
-    
 }
