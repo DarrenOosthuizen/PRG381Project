@@ -1,6 +1,7 @@
 package LayeredArchitecture.BusinessLayer;
 
-public class Customer {
+public class Customer implements Comparable<Customer>
+{
     private int Customer_ID;
     private String Customer_Name;
     private String Customer_Surname;
@@ -63,6 +64,20 @@ public class Customer {
     public String toString() {
         return "Customer [Customer_Cell=" + Customer_Cell + ", Customer_Email=" + Customer_Email + ", Customer_ID="
                 + Customer_ID + ", Customer_Name=" + Customer_Name + ", Customer_Surname=" + Customer_Surname + "]";
+    }
+
+
+    @Override
+    public int compareTo(Customer CO) 
+    {
+        //Alphabetic Sort if Property is Equal
+       if(this.Customer_Name == CO.Customer_Name)
+        {
+            return this.Customer_Surname.compareTo(CO.Customer_Surname) ;
+        }
+
+        return this.Customer_Name.compareTo(CO.Customer_Name) ;
+        
     }
 
 }
