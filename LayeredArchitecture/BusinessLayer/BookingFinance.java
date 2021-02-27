@@ -61,4 +61,10 @@ public class BookingFinance {
         Is_Deposit_Paid = is_Deposit_Paid;
     }
 
+    @Override
+    public String toString() {
+        return "BookingFinance [Booking_ID=" + Booking_ID + ", Deposit=" + Deposit + ", Is_Deposit_Paid="
+                + Is_Deposit_Paid + ", Is_Fully_Paid=" + Is_Fully_Paid + ", Total_Price=" + Total_Price + "]";
+    }
+
 }
