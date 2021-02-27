@@ -16,7 +16,6 @@ public class BookingFinance {
         Is_Fully_Paid = BFis_Fully_Paid;
         Is_Deposit_Paid = BFis_Deposit_Paid;
     }
-
     public BookingFinance() 
     {
 
