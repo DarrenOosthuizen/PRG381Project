@@ -1,7 +1,7 @@
 //Booking Finance Data Handler
 package LayeredArchitecture.DataAccessLayer;
 
-import LayeredArchitecture.BusinessLayer.BookingFinance;
+import LayeredArchitecture.BusinessLayer.*;
 import java.util.List;
 import java.util.ArrayList;
 

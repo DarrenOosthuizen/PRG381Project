@@ -19,6 +19,12 @@ public class Employee
         Employee_Role = Eemployee_Role;
     }
 
+    public Employee()
+    {
+        
+    }
+
+
     @Override
     public String toString() {
         return "Employee [Employee_Cell=" + Employee_Cell + ", Employee_Email=" + Employee_Email + ", Employee_ID="

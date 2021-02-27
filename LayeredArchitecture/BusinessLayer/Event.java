@@ -10,9 +10,15 @@ public class Event
         return "Event [Event_ID=" + Event_ID + ", Event_Name=" + Event_Name + "]";
     }
 
+
     public Event(int Eevent_ID, String Eevent_Name) {
         Event_ID = Eevent_ID;
         Event_Name = Eevent_Name;
+    }
+
+    public Event()
+    {
+
     }
 
     public int getEvent_ID() {
