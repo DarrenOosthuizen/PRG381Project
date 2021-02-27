@@ -7,6 +7,8 @@ public class BookingFinance {
     private int Is_Fully_Paid;
     private int Is_Deposit_Paid;
 
+    
+
     public BookingFinance(int BFbooking_ID, Float BFtotal_Price, Float BFdeposit, int BFis_Fully_Paid, int BFis_Deposit_Paid) {
         Booking_ID = BFbooking_ID;
         Total_Price = BFtotal_Price;
@@ -14,14 +16,16 @@ public class BookingFinance {
         Is_Fully_Paid = BFis_Fully_Paid;
         Is_Deposit_Paid = BFis_Deposit_Paid;
     }
-    public BookingFinance()
+    public BookingFinance() 
     {
-        
+
     }
 
     public int getBooking_ID() {
         return Booking_ID;
     }
+
+     
 
     public void setBooking_ID(int booking_ID) {
         Booking_ID = booking_ID;
