@@ -10,13 +10,13 @@ public class Customer {
     public Customer(){
         
     }
-    public Customer(int customer_ID, String customer_Name, String customer_Surname, String customer_Cell,
-            String customer_Email) {
-        Customer_ID = customer_ID;
-        Customer_Name = customer_Name;
-        Customer_Surname = customer_Surname;
-        Customer_Cell = customer_Cell;
-        Customer_Email = customer_Email;
+    public Customer(int Ccustomer_ID, String Ccustomer_Name, String Ccustomer_Surname, String Ccustomer_Cell,
+            String Ccustomer_Email) {
+        Customer_ID = Ccustomer_ID;
+        Customer_Name = Ccustomer_Name;
+        Customer_Surname = Ccustomer_Surname;
+        Customer_Cell = Ccustomer_Cell;
+        Customer_Email = Ccustomer_Email;
     }
 
     public int getCustomer_ID() {
@@ -57,6 +57,12 @@ public class Customer {
 
     public void setCustomer_Email(String customer_Email) {
         Customer_Email = customer_Email;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer [Customer_Cell=" + Customer_Cell + ", Customer_Email=" + Customer_Email + ", Customer_ID="
+                + Customer_ID + ", Customer_Name=" + Customer_Name + ", Customer_Surname=" + Customer_Surname + "]";
     }
 
 }

@@ -20,19 +20,19 @@ public class Booking {
 
     }
 
-    public Booking(int bookingID, int customerID, String customer_Name, Date dateCreated, String booking_Status,
-            int event_ID, Date event_Date, Time event_Time, int venue_ID, int total_Adults, int total_Kids) {
-        BookingID = bookingID;
-        CustomerID = customerID;
-        Customer_Name = customer_Name;
-        DateCreated = dateCreated;
-        Booking_Status = booking_Status;
-        Event_ID = event_ID;
-        Event_Date = event_Date;
-        Event_Time = event_Time;
-        Venue_ID = venue_ID;
-        Total_Adults = total_Adults;
-        Total_Kids = total_Kids;
+    public Booking(int BbookingID, int BcustomerID, String Bcustomer_Name, Date BdateCreated, String Bbooking_Status,
+            int Bevent_ID, Date Bevent_Date, Time Bevent_Time, int Bvenue_ID, int Btotal_Adults, int Btotal_Kids) {
+        BookingID = BbookingID;
+        CustomerID = BcustomerID;
+        Customer_Name = Bcustomer_Name;
+        DateCreated = BdateCreated;
+        Booking_Status = Bbooking_Status;
+        Event_ID = Bevent_ID;
+        Event_Date = Bevent_Date;
+        Event_Time = Bevent_Time;
+        Venue_ID = Bvenue_ID;
+        Total_Adults = Btotal_Adults;
+        Total_Kids = Btotal_Kids;
     }
 
     @Override

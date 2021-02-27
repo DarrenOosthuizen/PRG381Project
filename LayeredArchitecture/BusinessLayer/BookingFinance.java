@@ -7,12 +7,12 @@ public class BookingFinance {
     private int Is_Fully_Paid;
     private int Is_Deposit_Paid;
 
-    public BookingFinance(int booking_ID, Float total_Price, Float deposit, int is_Fully_Paid, int is_Deposit_Paid) {
-        Booking_ID = booking_ID;
-        Total_Price = total_Price;
-        Deposit = deposit;
-        Is_Fully_Paid = is_Fully_Paid;
-        Is_Deposit_Paid = is_Deposit_Paid;
+    public BookingFinance(int BFbooking_ID, Float BFtotal_Price, Float BFdeposit, int BFis_Fully_Paid, int BFis_Deposit_Paid) {
+        Booking_ID = BFbooking_ID;
+        Total_Price = BFtotal_Price;
+        Deposit = BFdeposit;
+        Is_Fully_Paid = BFis_Fully_Paid;
+        Is_Deposit_Paid = BFis_Deposit_Paid;
     }
 
     public int getBooking_ID() {
@@ -53,6 +53,12 @@ public class BookingFinance {
 
     public void setIs_Deposit_Paid(int is_Deposit_Paid) {
         Is_Deposit_Paid = is_Deposit_Paid;
+    }
+
+    @Override
+    public String toString() {
+        return "BookingFinance [Booking_ID=" + Booking_ID + ", Deposit=" + Deposit + ", Is_Deposit_Paid="
+                + Is_Deposit_Paid + ", Is_Fully_Paid=" + Is_Fully_Paid + ", Total_Price=" + Total_Price + "]";
     }
 
 }
