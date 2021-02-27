@@ -11,12 +11,12 @@ public class BookingFinance {
 
     }
 
-    public BookingFinance(int booking_ID, Float total_Price, Float deposit, int is_Fully_Paid, int is_Deposit_Paid) {
-        Booking_ID = booking_ID;
-        Total_Price = total_Price;
-        Deposit = deposit;
-        Is_Fully_Paid = is_Fully_Paid;
-        Is_Deposit_Paid = is_Deposit_Paid;
+    public BookingFinance(int BFbooking_ID, Float BFtotal_Price, Float BFdeposit, int BFis_Fully_Paid, int BFis_Deposit_Paid) {
+        Booking_ID = BFbooking_ID;
+        Total_Price = BFtotal_Price;
+        Deposit = BFdeposit;
+        Is_Fully_Paid = BFis_Fully_Paid;
+        Is_Deposit_Paid = BFis_Deposit_Paid;
     }
 
     public int getBooking_ID() {
