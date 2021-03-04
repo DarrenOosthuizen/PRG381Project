@@ -7,14 +7,15 @@ import java.sql.SQLException;
 
 public class DataAccessLayer 
 {
+       private static String dbURL = "jdbc:sqlserver://flystudio.sytes.net; database=Delicious-Catering;" ;
+       private static String user = "user=Delicious-Catering;";
+       private static String pass = "password=Delicious-Catering";
+
+       public static String DBConnection = dbURL + user + pass ;
     public static void main(String[] args) 
     {
         
-            String dbURL = "jdbc:sqlserver://flystudio.sytes.net" ;
-            String user = "Delicious-Catering";
-            String pass = "Delicious-Catering";
-    
-            try (Connection connection = DriverManager.getConnection(dbURL,user,pass);) 
+            try (Connection connection = DriverManager.getConnection(DBConnection);) 
             {
                 // Code here.
                 if (connection != null)
