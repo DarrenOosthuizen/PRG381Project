@@ -9,6 +9,10 @@ public class Menu
         Menu_ID = Mmenu_ID;
         Menu_Name = Mmenu_Name;
     }
+    public Menu()
+    {
+        
+    }
 
     public int getMenu_ID() {
         return Menu_ID;

@@ -9,6 +9,12 @@ public class CustomerUser {
         this.Booking_ID = CUBooking_ID;
     }
 
+    public CustomerUser() {
+        
+    }
+
+    
+
     public int getCustomer_ID() {
         return Customer_ID;
     }

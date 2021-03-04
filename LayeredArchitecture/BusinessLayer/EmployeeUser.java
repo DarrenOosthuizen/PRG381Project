@@ -9,6 +9,11 @@ public class EmployeeUser {
         Employee_ID = EUemployee_ID;
     }
 
+    public EmployeeUser()
+    {
+        
+    }
+
     public int getUser_ID() {
         return User_ID;
     }
