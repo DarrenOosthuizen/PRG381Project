@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 
-public class booking {
+public class BookingDH {
     private static DataAccessLayer DAL = new DataAccessLayer();
     public void CreateBooking(int iiBookingid, int iiCustomer_ID,String ssCustomer_Name,Date dDate_Created, String sBooking_status, int dEvent_ID,Date dEvent_date, Time tEvent_time,String sVenue_ID,int iTotal_Adults,int iTotal_Kids) {
         // Code to write to Bookings tabel
@@ -75,17 +75,21 @@ catch (Exception e) {
 
             // Print results from select statement
             while (resultSet.next()) {
-                //booking.set;
-                //booking.setTotal_Price(resultSet.getFloat(2));
-                //booking.setDeposit(resultSet.getFloat(3));
-                //booking.setIs_Fully_Paid(resultSet.getInt(4));
-                //booking.setIs_Deposit_Paid(resultSet.getInt(5));
-               // booking.setbooking_ID(resultSet.getInt(6));
-                //booking.setTotal_Price(resultSet.getFloat(7));
-                //booking.setDeposit(resultSet.getFloat(8));
-                //booking.setIs_Fully_Paid(resultSet.getInt(9));
-                //booking.setIs_Deposit_Paid(resultSet.getInt(10));
-                //booking.setIs_Deposit_Paid(resultSet.getInt(11));
+                booking.setBookingID(resultSet.getInt(1));
+                booking.setCustomerID(resultSet.getInt(2));
+                booking.setCustomer_Name(resultSet.getString(3));
+                booking.setDateCreated(resultSet.getDate(4));
+                booking.setBooking_Status(resultSet.getString(5));       
+                booking.setEvent_ID(resultSet.getInt(6));
+                booking.setEvent_Date(resultSet.getDate(7));
+                booking.setEvent_Time(resultSet.getTime(8));
+                booking.setVenue_ID(resultSet.getInt(9));
+                booking.setTotal_Adults(resultSet.getInt(10));
+                booking.setTotal_Kids(resultSet.getInt(11));
+                
+
+
+             
 
                 
             }
@@ -102,11 +106,37 @@ catch (Exception e) {
         // Code to update old Booking record to new Booking Record
         // Would be better to change the method to return true on succesfull update at a
         // later stage
+
+        String UPDATECusQuery = ("UPDATE  tblBookings SET Customer_ID = '" + newBooking.getCustomerID() + "', Customer_Name = '"  + newBooking.getCustomer_Name() + "', Date_Created = '"  + newBooking.getDateCreated() + "', Booking_Status = '"  + newBooking.getBooking_Status() + "', Event_ID = '"  + newBooking.getEvent_ID() + "', Event_Date = '"  + newBooking.getEvent_Date() + "', Event_Time = '"  + newBooking.getEvent_Time() + "', Venue_ID = '"  + newBooking.getVenue_ID() + "', Total_Adults = '"  + newBooking.getTotal_Adults() + "', Total_Kids = '"  + newBooking.getTotal_Kids() + "'"  + " WHERE Booking_ID = '" + oldBooking.getBookingID() + "'") ;
+
+        try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
+             PreparedStatement prepsUpdateProduct = connection.prepareStatement(UPDATECusQuery);) 
+         {
+             prepsUpdateProduct.execute();
+             
+         }
+         // Handle any errors that may have occurred.
+         catch (Exception e) {
+             e.printStackTrace();
+         }
     }
 
-    public void DeleteBooking(Booking BookingObj) {
+    public void DeleteBooking(Booking BookingObj,int iBookingid) {
         // Code to delete specific Booking from table
         // Would be better to change the method to return true on succesfull delete at a
         // later stage
+
+        String DeleteCusQuery = ("DELETE FROM tblBookings WHERE Booking_ID = '" + iBookingid + "'") ;
+
+       try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
+            PreparedStatement prepsDeleteProduct = connection.prepareStatement(DeleteCusQuery);) 
+        {
+            prepsDeleteProduct.execute();
+            
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

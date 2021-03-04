@@ -87,8 +87,8 @@ public class Booking {
         return Event_ID;
     }
 
-    public void setEvent_ID(int event_ID) {
-        Event_ID = event_ID;
+    public void setEvent_ID(int EventID) {
+        Event_ID = EventID;
     }
 
     public Date getEvent_Date() {
