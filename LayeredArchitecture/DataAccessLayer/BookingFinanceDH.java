@@ -65,7 +65,7 @@ public class BookingFinanceDH {
                 Statement statement = connection.createStatement();) {
 
             // Create and execute a SELECT SQL statement.
-            String selectSql = ("SELECT * from tblBookingFinance WHERE Booking_ID_ID = '" + BookingFinance_ID + "'");
+            String selectSql = ("SELECT * from tblBookingFinance WHERE Booking_ID = '" + BookingFinance_ID + "'");
             resultSet = statement.executeQuery(selectSql);
 
             // Print results from select statement
