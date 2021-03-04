@@ -43,4 +43,92 @@ public class Booking {
                 + ", Total_Kids=" + Total_Kids + ", Venue_ID=" + Venue_ID + "]";
     }
 
+    public int getBookingID() {
+        return BookingID;
+    }
+
+    public void setBookingID(int bookingID) {
+        BookingID = bookingID;
+    }
+
+    public int getCustomerID() {
+        return CustomerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        CustomerID = customerID;
+    }
+
+    public String getCustomer_Name() {
+        return Customer_Name;
+    }
+
+    public void setCustomer_Name(String customer_Name) {
+        Customer_Name = customer_Name;
+    }
+
+    public Date getDateCreated() {
+        return DateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        DateCreated = dateCreated;
+    }
+
+    public String getBooking_Status() {
+        return Booking_Status;
+    }
+
+    public void setBooking_Status(String booking_Status) {
+        Booking_Status = booking_Status;
+    }
+
+    public int getEvent_ID() {
+        return Event_ID;
+    }
+
+    public void setEvent_ID(int event_ID) {
+        Event_ID = event_ID;
+    }
+
+    public Date getEvent_Date() {
+        return Event_Date;
+    }
+
+    public void setEvent_Date(Date event_Date) {
+        Event_Date = event_Date;
+    }
+
+    public Time getEvent_Time() {
+        return Event_Time;
+    }
+
+    public void setEvent_Time(Time event_Time) {
+        Event_Time = event_Time;
+    }
+
+    public int getVenue_ID() {
+        return Venue_ID;
+    }
+
+    public void setVenue_ID(int venue_ID) {
+        Venue_ID = venue_ID;
+    }
+
+    public int getTotal_Adults() {
+        return Total_Adults;
+    }
+
+    public void setTotal_Adults(int total_Adults) {
+        Total_Adults = total_Adults;
+    }
+
+    public int getTotal_Kids() {
+        return Total_Kids;
+    }
+
+    public void setTotal_Kids(int total_Kids) {
+        Total_Kids = total_Kids;
+    }
+
 }
