@@ -15,11 +15,6 @@ public class CustomerDH
 {
     private static DataAccessLayer DAL = new DataAccessLayer();
 
-    public static void main(String[] args) 
-    {
-        System.out.println("Testing Input");
-       
-    }
 
     public  void CreateCustomer(String CCCusName, String CCCusSurname, String CCCusCell, String CCCusEmail) {
         String InsertCusQuery = ("INSERT INTO tblCustomer (Customer_Name, Customer_Surname, Customer_Cell, Customer_Email) VALUES ('"
@@ -91,10 +86,20 @@ public class CustomerDH
         // return Customer object
     }
 
-    public void UpdateCustomer(Customer oldCustomer, Customer newCustomer) {
-        // Code to update old Customer record to new Customer Record
-        // Would be better to change the method to return true on succesfull update at a
-        // later stage
+    public  void UpdateCustomer(Customer oldCustomer, Customer newCustomer) 
+    {
+        String UPDATECusQuery = ("UPDATE  tblCustomer SET Customer_Name = '" + newCustomer.getCustomer_Name() + "', Customer_Surname = '"  + newCustomer.getCustomer_Surname() + "', Customer_Cell = '"  + newCustomer.getCustomer_Cell() + "', Customer_Email = '"  + newCustomer.getCustomer_Email() + "'"  + " WHERE Customer_ID = '" + oldCustomer.getCustomer_ID() + "'") ;
+
+       try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
+            PreparedStatement prepsUpdateProduct = connection.prepareStatement(UPDATECusQuery);) 
+        {
+            prepsUpdateProduct.execute();
+            
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public  void DeleteCustomer(int CusID) 
