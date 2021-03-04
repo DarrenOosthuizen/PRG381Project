@@ -12,7 +12,8 @@ import java.util.ArrayList;
 public class CustomerUserDH 
 {
     private static DataAccessLayer DAL = new DataAccessLayer();
-    public void CreateCustomerUser() {
+    public void CreateCustomerUser() 
+    {
         // Code to write to CustomerUser tabel
         // Would be better to change the method to return true on succesfull create at a
         // later stage
