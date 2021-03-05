@@ -83,8 +83,18 @@ public class ClientPL
 
     public void ClientMenu()
     {
-        System.out.println(CustomerOBJ.getCustomer_Email());
+        System.out.print("\033[H\033[2J"); // !033[H moves Cursor to top left corner or console. 033[2J Clears
+        System.out.flush(); // !Clear System
+
         System.out.println("Client Menu");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("                           Welcome to Client Portal                           ");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("                  Please Select Option from the menu below:                  ");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("1 : New Booking");
+        System.out.println("2 : Login in as Employee");
+        System.out.println("-----------------------------------------------------------------------------");
     }
 
 

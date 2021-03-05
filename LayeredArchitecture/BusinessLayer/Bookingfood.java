@@ -1,6 +1,6 @@
 package LayeredArchitecture.BusinessLayer;
 
-public class BookingFood {
+public class Bookingfood{
     private int Booking_ID;
     private int Adults_Meal;
     private int Kids_Meal;
