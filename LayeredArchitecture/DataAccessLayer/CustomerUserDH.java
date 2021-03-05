@@ -4,6 +4,7 @@ import LayeredArchitecture.BusinessLayer.CustomerUser;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,18 +13,42 @@ import java.util.ArrayList;
 public class CustomerUserDH 
 {
     private static DataAccessLayer DAL = new DataAccessLayer();
-    public void CreateCustomerUser() 
+    public void CreateCustomerUser(CustomerUser newCusUser) 
     {
-        // Code to write to CustomerUser tabel
-        // Would be better to change the method to return true on succesfull create at a
-        // later stage
+        String InsertCusQuery = ("INSERT INTO tblCustomerUser (Customer_ID, User_ID) VALUES ('"
+                + newCusUser.getCustomer_ID() + "','" + newCusUser.getUser_ID() + "')");
+        
+
+        try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
+                PreparedStatement prepsInsertProduct = connection.prepareStatement(InsertCusQuery);) {
+            prepsInsertProduct.execute();
+
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<CustomerUser> ReadAllCustomerUser() {
         List<CustomerUser> CustomerUserList = new ArrayList<CustomerUser>();
-        // Code to read all records from CustomerUser and load into list.
+        ResultSet resultSet = null;
+
+        try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
+                Statement statement = connection.createStatement();) {
+
+            String selectSql = "SELECT * from tblCustomerUser";
+            resultSet = statement.executeQuery(selectSql);
+
+            while (resultSet.next()) {
+                CustomerUserList.add(new CustomerUser(resultSet.getInt(1), resultSet.getInt(2)));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return CustomerUserList;
-        // Return list of records
     }
 
     public CustomerUser ReadCustomerUser(int CustomerUser_ID) 
@@ -60,15 +85,35 @@ public class CustomerUserDH
     }
 
     public void UpdateCustomerUser(CustomerUser oldCustomerUser, CustomerUser newCustomerUser) {
-        // Code to update old CustomerUser record to new CustomerUser Record
-        // Would be better to change the method to return true on succesfull update at a
-        // later stage
+        String UPDATECusQuery = ("UPDATE  tblCustomerUser SET Customer_ID = '" + newCustomerUser.getCustomer_ID() + "', User_ID = '"  + newCustomerUser.getUser_ID()  + " WHERE Customer_ID = '" + oldCustomerUser.getCustomer_ID() + "'") ;
+
+       try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
+            PreparedStatement prepsUpdateProduct = connection.prepareStatement(UPDATECusQuery);) 
+        {
+            prepsUpdateProduct.execute();
+            
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void DeleteCustomerUser(CustomerUser CustomerUserObj) {
-        // Code to delete specific CustomerUser from table
-        // Would be better to change the method to return true on succesfull delete at a
-        // later stage
+    public void DeleteCustomerUser(int CustomerUserID) {
+        String DeleteCusQuery = ("DELETE FROM tblCustomerUser WHERE Customer_ID = '" + CustomerUserID + "'") ;
+
+       try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
+            PreparedStatement prepsDeleteProduct = connection.prepareStatement(DeleteCusQuery);) 
+        {
+            prepsDeleteProduct.execute();
+            
+        }
+        // Handle any errors that may have occurred.
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        
     }
     
 }
