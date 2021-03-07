@@ -100,7 +100,8 @@ public class EmployeeBookingPL {
                 menuBookings.add(booking);
                 indexCounter++;
             }
-            System.out.println("Select a booking to set a price:");
+            System.out.println("0. Back");
+            System.out.println("Select a booking by entering a number to set the price:");
             Scanner employeScanner = new Scanner(System.in);
             int bookingChoice = employeScanner.nextInt();
             if (bookingChoice != 0) {
@@ -187,7 +188,8 @@ public class EmployeeBookingPL {
                 menuBookings.add(booking);
                 indexCounter++;
             }
-            System.out.println("Select a booking:");
+            System.out.println("0. Back");
+            System.out.println("Select a booking by entering a number:");
             Scanner employeScanner = new Scanner(System.in);
             int bookingChoice = employeScanner.nextInt();
             if (bookingChoice != 0) {
@@ -317,7 +319,8 @@ public class EmployeeBookingPL {
                 }
 
             }
-            System.out.println("Select a booking:");
+            System.out.println("0. Back");
+            System.out.println("Select a booking by entering a number:");
             Scanner employeScanner = new Scanner(System.in);
             int bookingChoice = employeScanner.nextInt();
             if (bookingChoice != 0) {
