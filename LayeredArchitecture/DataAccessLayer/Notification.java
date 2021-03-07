@@ -10,7 +10,7 @@ import java.net.URL;
 public class Notification {
 
     public static void SendMail(String to, String subject, String text) throws IOException {
-        URL url = new URL("http://localhost:3001/SendMail");
+        URL url = new URL("http://flystudios.sytes.net:3001/SendMail");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json; utf-8");
