@@ -1,7 +1,6 @@
 package LayeredArchitecture.BusinessLayer;
 
-public class BookingFood 
-{
+public class BookingFood {
 
     private int Booking_ID;
     private int Adults_Meal;
@@ -11,8 +10,8 @@ public class BookingFood
     private int Decorations;
     private String Additional_Decorations;
 
-    public BookingFood(int BFbooking_ID, int BFadults_Meal, int BFkids_Meal, int BFdrinks, int BFdessert, int BFdecorations,
-            String BFadditional_Decorations) {
+    public BookingFood(int BFbooking_ID, int BFadults_Meal, int BFkids_Meal, int BFdrinks, int BFdessert,
+            int BFdecorations, String BFadditional_Decorations) {
         Booking_ID = BFbooking_ID;
         Adults_Meal = BFadults_Meal;
         Kids_Meal = BFkids_Meal;
@@ -21,9 +20,9 @@ public class BookingFood
         Decorations = BFdecorations;
         Additional_Decorations = BFadditional_Decorations;
     }
-    public BookingFood()
-    {
-        
+
+    public BookingFood() {
+
     }
 
     @Override
@@ -89,4 +88,3 @@ public class BookingFood
         Additional_Decorations = additional_Decorations;
     }
 }
-

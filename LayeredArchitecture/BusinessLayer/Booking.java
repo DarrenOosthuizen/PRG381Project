@@ -15,6 +15,7 @@ public class Booking {
     private int Venue_ID;
     private int Total_Adults;
     private int Total_Kids;
+    private int menuIndexer;
 
     public Booking() {
 
@@ -33,6 +34,7 @@ public class Booking {
         Venue_ID = Bvenue_ID;
         Total_Adults = Btotal_Adults;
         Total_Kids = Btotal_Kids;
+        menuIndexer = 0;
     }
 
     @Override
@@ -129,6 +131,14 @@ public class Booking {
 
     public void setTotal_Kids(int total_Kids) {
         Total_Kids = total_Kids;
+    }
+
+    public int getMenuIndexer() {
+        return menuIndexer;
+    }
+
+    public void setMenuIndexer(int menuIndexer) {
+        this.menuIndexer = menuIndexer;
     }
 
 }
