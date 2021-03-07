@@ -10,12 +10,17 @@ import LayeredArchitecture.DataAccessLayer.BookingDH;
 import LayeredArchitecture.DataAccessLayer.VenueDH;
 import LayeredArchitecture.DataAccessLayer.BookingFinanceDH;
 import LayeredArchitecture.BusinessLayer.BookingFinance;
+import LayeredArchitecture.BusinessLayer.Customer;
+import LayeredArchitecture.DataAccessLayer.Notification;
+import LayeredArchitecture.DataAccessLayer.CustomerDH;
 
 public class EmployeeBookingPL {
 
     private static BookingDH bookingDH = new BookingDH();
     private List<Booking> bookingsList = new ArrayList<Booking>();
     private static BookingFinanceDH bookingFinanceDH = new BookingFinanceDH();
+    private static Notification notificationService = new Notification();
+    private static CustomerDH customerDH = new CustomerDH();
 
     EmployeeBookingPL() {
         GetAllBookings();
@@ -271,11 +276,15 @@ public class EmployeeBookingPL {
     }
 
     public void ConfirmBooking(Booking booking) {
+        Customer customer = customerDH.ReadCustomer(booking.getCustomerID());
         Booking confirmedBooking = booking;
         confirmedBooking.setBooking_Status("Confirmed");
         try {
             bookingDH.UpdateBooking(booking, confirmedBooking);
             System.out.println("Booking confirmed.");
+            notificationService.SendMail(customer.getCustomer_Email(), "Booking Confirmation with Delicious Catering",
+                    "Delicious catering has confirmed your booking order: " + booking.getBookingID() + "on "
+                            + booking.getEvent_Date());
         } catch (Exception e) {
             System.out.println("Booking could not be confirmed");
         }
