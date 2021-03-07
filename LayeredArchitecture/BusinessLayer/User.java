@@ -6,6 +6,10 @@ public class User {
     private String User_Password;
     private String User_Privilege;
 
+    public User() {
+
+    }
+
     public User(int Uuser_ID, String Uuser_Name, String Uuser_Password, String Uuser_Privilege) {
         User_ID = Uuser_ID;
         User_Name = Uuser_Name;
@@ -51,7 +55,4 @@ public class User {
         User_Privilege = user_Privilege;
     }
 
-    
-
-    
 }

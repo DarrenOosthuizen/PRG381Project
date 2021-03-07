@@ -1,19 +1,23 @@
 package LayeredArchitecture.BusinessLayer;
 
-public class Customer {
+public class Customer implements Comparable<Customer>
+{
     private int Customer_ID;
     private String Customer_Name;
     private String Customer_Surname;
     private String Customer_Cell;
     private String Customer_Email;
 
-    public Customer(int customer_ID, String customer_Name, String customer_Surname, String customer_Cell,
-            String customer_Email) {
-        Customer_ID = customer_ID;
-        Customer_Name = customer_Name;
-        Customer_Surname = customer_Surname;
-        Customer_Cell = customer_Cell;
-        Customer_Email = customer_Email;
+    public Customer(){
+        
+    }
+    public Customer(int Ccustomer_ID, String Ccustomer_Name, String Ccustomer_Surname, String Ccustomer_Cell,
+            String Ccustomer_Email) {
+        Customer_ID = Ccustomer_ID;
+        Customer_Name = Ccustomer_Name;
+        Customer_Surname = Ccustomer_Surname;
+        Customer_Cell = Ccustomer_Cell;
+        Customer_Email = Ccustomer_Email;
     }
 
     public int getCustomer_ID() {
@@ -54,6 +58,26 @@ public class Customer {
 
     public void setCustomer_Email(String customer_Email) {
         Customer_Email = customer_Email;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer [Customer_Cell=" + Customer_Cell + ", Customer_Email=" + Customer_Email + ", Customer_ID="
+                + Customer_ID + ", Customer_Name=" + Customer_Name + ", Customer_Surname=" + Customer_Surname + "]";
+    }
+
+
+    @Override
+    public int compareTo(Customer CO) 
+    {
+        //Alphabetic Sort if Property is Equal
+       if(this.Customer_Name == CO.Customer_Name)
+        {
+            return this.Customer_Surname.compareTo(CO.Customer_Surname) ;
+        }
+
+        return this.Customer_Name.compareTo(CO.Customer_Name) ;
+        
     }
 
 }
