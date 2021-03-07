@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class EventDH {
     private static DataAccessLayer DAL = new DataAccessLayer();
-
+    
     public void CreateEvent(Event event) {
         String InsertCusQuery = ("INSERT INTO tblEvent (Event_ID, Event_Name) VALUES ('" + event.getEvent_ID() + "','"
                 + event.getEvent_Name() + "')");

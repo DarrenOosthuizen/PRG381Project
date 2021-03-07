@@ -105,22 +105,7 @@ public class PresentationLayer
                     System.out.println("Invalid Input please try again");
                     System.out.println("Please press Any Key to reset Console!");
                 }
-
-                // !If the Client has successfuly logged in it will continue with the loop
-                if (ClientCurrent.ClientLogin() == true)
-                {
-
-                }
-
-                //!If the Employee has successfuly logged in it will continue with the loop
-                if(employeeLogin == true)
-                {
-
-                }
-
-
-
-                
+ 
                 
                 //!Wait for keypress to reset the while and start from the begining
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
