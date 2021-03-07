@@ -14,10 +14,10 @@ import java.sql.Statement;
 
 public class BookingFinanceDH {
     private static DataAccessLayer DAL = new DataAccessLayer();
-    public void CreateBookingFinance(Float fTotalprice, Float fDeposit, int iFully, int iDeposti)   
+    public void CreateBookingFinance(BookingFinance newBooking)   
      {
-        String InsertCusQuery = ("INSERT INTO tblBookingFinance (Total_Price, Deposit, Is_Fully_Paid, Is_Deposit_Paid) VALUES ('"
-                + fTotalprice + "','" + fDeposit + "','" + iFully + "','" + iDeposti + "')");
+        String InsertCusQuery = ("INSERT INTO tblBookingFinance (Total_Price, Deposit, Is_Fully_Paid, Is_Deposit_Paid, Amount_Paid) VALUES ('"
+                + newBooking.getTotal_Price() + "','" + newBooking.getDeposit() + "','" + newBooking.getIs_Fully_Paid() + "','" + newBooking.getIs_Deposit_Paid() + "','" + newBooking.getAmount_Paid() +"')");
         
 
         try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
@@ -44,7 +44,7 @@ public class BookingFinanceDH {
 
             while (resultSet.next()) {
                 BookingFinanceList.add(new BookingFinance(resultSet.getInt(1), resultSet.getFloat(2), resultSet.getFloat(3),
-                        resultSet.getInt(4), resultSet.getInt(5)));
+                        resultSet.getInt(4), resultSet.getInt(5), resultSet.getFloat(6)));
             }
 
         } catch (SQLException e) {
@@ -75,6 +75,7 @@ public class BookingFinanceDH {
                 Booking_Finance.setDeposit(resultSet.getFloat(3));
                 Booking_Finance.setIs_Fully_Paid(resultSet.getInt(4));
                 Booking_Finance.setIs_Deposit_Paid(resultSet.getInt(5));
+                Booking_Finance.setAmount_Paid(resultSet.getFloat(6));
                 
             }
 
@@ -92,7 +93,7 @@ public class BookingFinanceDH {
         // Would be better to change the method to return true on succesfull update at a
         // later stage
 
-        String UPDATECusQuery = ("UPDATE  tblBookingFinance SET Total_Price = '" + newBookingFinance.getTotal_Price() + "', Deposit = '"  + newBookingFinance.getDeposit() + "', Is_Fully_Paid = '"  + newBookingFinance.getIs_Fully_Paid() + "', Is_Deposit_Paid = '"  + newBookingFinance.getIs_Deposit_Paid() + "'"  + " WHERE Booking_ID = '" + oldBookingFinance.getBooking_ID() + "'") ;
+        String UPDATECusQuery = ("UPDATE  tblBookingFinance SET Total_Price = '" + newBookingFinance.getTotal_Price() + "', Deposit = '"  + newBookingFinance.getDeposit() + "', Is_Fully_Paid = '"  + newBookingFinance.getIs_Fully_Paid() + "', Is_Deposit_Paid = '"  + newBookingFinance.getIs_Deposit_Paid() + "', Amount_Paid = '" +  newBookingFinance.getAmount_Paid() +  "'"  + " WHERE Booking_ID = '" + oldBookingFinance.getBooking_ID() + "'") ;
 
         try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
              PreparedStatement prepsUpdateProduct = connection.prepareStatement(UPDATECusQuery);) 

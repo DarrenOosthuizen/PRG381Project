@@ -113,6 +113,7 @@ public class ClientPL
         System.out.println("1 : Add New Booking");
         System.out.println("2 : Check Status of Booking");
         System.out.println("3 : Update Menu of Booking");
+        System.out.println("4 : Pay Booking");
         System.out.println("0 : Exit Application");
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("Please select a valid menu option above");
@@ -141,6 +142,12 @@ public class ClientPL
             {
                 ClientUpdatePL newClientUpdate = new ClientUpdatePL();
                 newClientUpdate.UpdateMenu(CustomerOBJ);
+                CorrectMenuOption = true ;
+            }
+            else if(intClientChoice==4)
+            {
+                ClientPaymentPL newClientPayment = new ClientPaymentPL();
+                newClientPayment.AddPayment(CustomerOBJ);
                 CorrectMenuOption = true ;
             }
             else if(intClientChoice==0)
