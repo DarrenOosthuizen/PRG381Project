@@ -19,16 +19,17 @@ public class ClientUpdatePL
     public void UpdateMenu(Customer CusOBJ)
     {
         List<Booking> BookingList = bookingobj.ReadAllBookings();
+        
+        Scanner updateScanner = new Scanner(System.in);
+        boolean loggedout = false;
+        while(loggedout==false)
+        {
         System.out.println("--------------------------------------------------------");
         System.out.println("             Welcome to Update Booking Menu             ");
         System.out.println("                    Enter 0 to exit                     ");
         System.out.println("--------------------------------------------------------");
         System.out.println("                 Please enter BookingID                 ");
         System.out.println("--------------------------------------------------------");
-        Scanner updateScanner = new Scanner(System.in);
-        boolean loggedout = false;
-        while(loggedout==false)
-        {
             int iupdate = 0 ;
             int ClientUpdate = updateScanner.nextInt();
             if(ClientUpdate==0)
@@ -36,6 +37,7 @@ public class ClientUpdatePL
                 System.out.println("Exiting!");
                 System.out.println("Press Any Key to Continue");
                 loggedout = true ;
+                break;
             }
             else if(ClientUpdate > BookingList.size())
             {
@@ -374,7 +376,6 @@ public class ClientUpdatePL
                 {
                     System.out.println("Exiting Now");
                     updatedone = true;
-                    break;
 
                 }
             }
