@@ -83,12 +83,21 @@ public class ClientBookingPL
         System.out.println(DateCreated);
 
         
-        
-         
-        
-        boolean evenyear = false;
-            
+        boolean evenday = false;
+            int iEventDay = 0;
+        boolean evenmonth = false;
+            int iEventMonth = 0; 
         int iEventYear = 0 ;
+        boolean evenyear = false;
+        boolean datecorrect = false;
+            java.sql.Date sqlDate = null;;
+            List<Booking> datelist= bookingeventDH.ReadAllBookings();
+            boolean dateDone=false;
+        
+        while (dateDone==false) {
+            
+        
+
         System.out.println("-----------------------------------------------------------------------------");    
         System.out.println("                           Please Enter Event Year                          ");
             while(evenyear==false)
@@ -110,11 +119,16 @@ public class ClientBookingPL
                     {
                         evenyear = true ;
                     }
+            
+
                 }
+
+                
+
+
             }
 
-            boolean evenmonth = false;
-            int iEventMonth = 0;
+            
             System.out.println("-----------------------------------------------------------------------------");    
             System.out.println("                Please Enter Event Month(Enter digit month)                  ");
             while(evenmonth==false)
@@ -148,8 +162,7 @@ public class ClientBookingPL
                 }
             }
 
-            boolean evenday = false;
-            int iEventDay = 0;
+            
             System.out.println("-----------------------------------------------------------------------------");    
             System.out.println("                           Please Enter Event Day                         ");
             while(evenday==false)
@@ -183,13 +196,27 @@ public class ClientBookingPL
                 }
 
             }
-            boolean datecorrect = false;
-            java.sql.Date sqlDate = null;;
-            while(datecorrect==false)
-            {
+            datecorrect=false;
+            
             Date eventDateReal=new Date(iEventYear, iEventMonth, iEventDay);
             sqlDate = new java.sql.Date(eventDateReal.getTime());
-            }
+
+
+            for (Booking dateitem : datelist) {
+                if (dateitem.getDateCreated()==sqlDate) {
+                    System.out.println("Current date already taken choose another date");
+                    
+                }
+                else
+                {
+                    
+                    dateDone=true;
+                }
+
+
+            
+        }
+
             
            
             
@@ -437,7 +464,7 @@ public class ClientBookingPL
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             br.readLine();
         }
-
+    }
       
 
 }
