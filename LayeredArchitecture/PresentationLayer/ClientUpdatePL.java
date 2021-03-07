@@ -1,5 +1,6 @@
 package LayeredArchitecture.PresentationLayer;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ import LayeredArchitecture.BusinessLayer.BookingFood;
 import LayeredArchitecture.BusinessLayer.Customer;
 import LayeredArchitecture.DataAccessLayer.BookingDH;
 import LayeredArchitecture.DataAccessLayer.BookingFoodDH;
+import LayeredArchitecture.DataAccessLayer.Notification;
 
 public class ClientUpdatePL 
 { 
@@ -15,8 +17,9 @@ public class ClientUpdatePL
     BookingFoodDH foodobj = new BookingFoodDH();
     BookingFood newFoodobj = new BookingFood();
     BookingFood oldFoodobj = new BookingFood();
+    private static Notification notificationService = new Notification();
 
-    public void UpdateMenu(Customer CusOBJ)
+    public void UpdateMenu(Customer CusOBJ) throws IOException
     {
         List<Booking> BookingList = bookingobj.ReadAllBookings();
         
@@ -154,6 +157,8 @@ public class ClientUpdatePL
                             newFoodobj.setAdults_Meal(1); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Menu Updated","Adults Menu Updated on order :" + newFoodobj.getBooking_ID());
+                            
                             done = true;       
                         }
                         else if (strUpdate.equalsIgnoreCase("NO"))
@@ -167,6 +172,8 @@ public class ClientUpdatePL
                             newFoodobj.setAdults_Meal(0); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Menu Updated","Adults Menu Updated on order :" + newFoodobj.getBooking_ID());
+                            
                             done = true ;
                         }
                         else
@@ -193,6 +200,7 @@ public class ClientUpdatePL
                             newFoodobj.setKids_Meal(1); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Menu Updated","Kids Menu Updated on order :" + newFoodobj.getBooking_ID());
                             done = true;                   
                         }
                         else if (strUpdate.equalsIgnoreCase("NO"))
@@ -206,6 +214,7 @@ public class ClientUpdatePL
                             newFoodobj.setKids_Meal(0); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Menu Updated","Kids Menu Updated on order :" + newFoodobj.getBooking_ID());
                             done = true ;
                         }
                         else
@@ -232,6 +241,7 @@ public class ClientUpdatePL
                             newFoodobj.setDrinks(1); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Menu Updated","Drinks Menu Updated on order :" + newFoodobj.getBooking_ID());
                             done = true;                   
                         }
                         else if (strUpdate.equalsIgnoreCase("NO"))
@@ -245,6 +255,7 @@ public class ClientUpdatePL
                             newFoodobj.setDrinks(0); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Menu Updated","Drinks Menu Updated on order :" + newFoodobj.getBooking_ID());
                             done = true ;
                         }
                         else
@@ -271,6 +282,7 @@ public class ClientUpdatePL
                             newFoodobj.setDessert(1); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Menu Updated","Dessert Menu Updated on order :" + newFoodobj.getBooking_ID());
                             done = true;                 
                         }
                         else if (strUpdate.equalsIgnoreCase("NO"))
@@ -284,6 +296,7 @@ public class ClientUpdatePL
                             newFoodobj.setDessert(0); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Menu Updated","Dessert Menu Updated on order :" + newFoodobj.getBooking_ID());
                             done = true ;
                         }
                         else
@@ -297,7 +310,7 @@ public class ClientUpdatePL
                     boolean done = false;
                     while(done == false)
                     {
-                        System.out.println("Please enter Yes to have Dessert Menu or No to not have Dessert Menu");
+                        System.out.println("Please enter Yes to have Decorations or No to not have Decorations");
                         String strUpdate = scUpdate.nextLine();
                         if(strUpdate.equalsIgnoreCase("YES"))
                         {                     
@@ -310,6 +323,7 @@ public class ClientUpdatePL
                             newFoodobj.setDecorations(1); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Decorations Updated","Decorations Updated on order :" + newFoodobj.getBooking_ID());
                             done = true;                      
                         }
                         else if (strUpdate.equalsIgnoreCase("NO"))
@@ -351,6 +365,7 @@ public class ClientUpdatePL
                             newFoodobj.setAdditional_Decorations(strUpdate); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Additional Decorations Updated","Additional Decorations Updated on order :" + newFoodobj.getBooking_ID());
                             done = true;          
                         }
                         else if (strUpdate.equalsIgnoreCase("NO"))
@@ -364,6 +379,8 @@ public class ClientUpdatePL
                             newFoodobj.setAdditional_Decorations("None"); 
                             foodobj.UpdateBookingFood(oldFoodobj, newFoodobj);
                             System.out.println("Menu Updated");
+                            notificationService.SendMail("Raheal@gmail.com","Additional Decorations Updated","Additional Decorations Updated on order :" + newFoodobj.getBooking_ID());
+                           
                             done = true ;
                         }
                         else
