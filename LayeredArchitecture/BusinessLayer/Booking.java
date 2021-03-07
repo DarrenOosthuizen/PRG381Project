@@ -1,5 +1,6 @@
 package LayeredArchitecture.BusinessLayer;
 
+import java.security.Timestamp;
 import java.sql.Time;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ public class Booking {
     private String Booking_Status;
     private int Event_ID;
     private Date Event_Date;
-    private Time Event_Time;
+    private String Event_Time;
     private int Venue_ID;
     private int Total_Adults;
     private int Total_Kids;
@@ -22,7 +23,7 @@ public class Booking {
     }
 
     public Booking(int BbookingID, int BcustomerID, String Bcustomer_Name, Date BdateCreated, String Bbooking_Status,
-            int Bevent_ID, Date Bevent_Date, Time Bevent_Time, int Bvenue_ID, int Btotal_Adults, int Btotal_Kids) {
+            int Bevent_ID, Date Bevent_Date, String Bevent_Time, int Bvenue_ID, int Btotal_Adults, int Btotal_Kids) {
         BookingID = BbookingID;
         CustomerID = BcustomerID;
         Customer_Name = Bcustomer_Name;
@@ -101,11 +102,11 @@ public class Booking {
         Event_Date = event_Date;
     }
 
-    public Time getEvent_Time() {
+    public String getEvent_Time() {
         return Event_Time;
     }
 
-    public void setEvent_Time(Time event_Time) {
+    public void setEvent_Time(String event_Time) {
         Event_Time = event_Time;
     }
 

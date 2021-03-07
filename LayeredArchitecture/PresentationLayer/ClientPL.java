@@ -1,5 +1,6 @@
 package LayeredArchitecture.PresentationLayer;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,12 +32,13 @@ public class ClientPL {
     }
 
     public void ClientSignIn() {
-
+        ClientFound = false;
         while (ClientFound == false) {
             try {
 
                 System.out.println("-----------------------------------------------------------------------------");
                 System.out.println("Please Enter Client User Name :");
+
                 Scanner RdClientUser = new Scanner(System.in);
                 String strClientUser = RdClientUser.nextLine();
                 System.out.printf("Please Enter Password for User %s:", strClientUser);
@@ -72,7 +74,7 @@ public class ClientPL {
         }
     }
 
-    public void ClientMenu() throws ParseException {
+    public void ClientMenu() throws ParseException, IOException {
         boolean loggedout = false;
         while (loggedout == false) {
             System.out.print("\033[H\033[2J"); // !033[H moves Cursor to top left corner or console. 033[2J Clears
@@ -89,6 +91,7 @@ public class ClientPL {
             System.out.println("1 : Add New Booking");
             System.out.println("2 : Check Status of Booking");
             System.out.println("3 : Update Menu of Booking");
+            System.out.println("4 : Pay Booking");
             System.out.println("0 : Exit Application");
             System.out.println("-----------------------------------------------------------------------------");
             System.out.println("Please select a valid menu option above");
@@ -99,7 +102,7 @@ public class ClientPL {
                 int intClientChoice = RDClientMenu.nextInt();
                 if (intClientChoice == 1) {
                     ClientBookingPL newClientBooking = new ClientBookingPL();
-                    newClientBooking.AddBooking();
+                    newClientBooking.AddBooking(CustomerOBJ);
                     CorrectMenuOption = true;
 
                 } else if (intClientChoice == 2) {
@@ -108,7 +111,13 @@ public class ClientPL {
                     CorrectMenuOption = true;
 
                 } else if (intClientChoice == 3) {
-
+                    ClientUpdatePL newClientUpdate = new ClientUpdatePL();
+                    newClientUpdate.UpdateMenu(CustomerOBJ);
+                    CorrectMenuOption = true;
+                } else if (intClientChoice == 4) {
+                    ClientPaymentPL newClientPayment = new ClientPaymentPL();
+                    newClientPayment.AddPayment(CustomerOBJ);
+                    CorrectMenuOption = true;
                 } else if (intClientChoice == 0) {
                     System.out.println("You will be logged out");
                     System.out.println("Press any key to continue");

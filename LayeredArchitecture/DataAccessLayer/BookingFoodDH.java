@@ -14,10 +14,10 @@ public class BookingFoodDH
 {
     private static DataAccessLayer DAL = new DataAccessLayer();
 
-    public void CreateBookingFood(int AdultsMeal,int Kids_meal,int Drinks,int Dessert,int Decorations,String Additional_Decorations) {
+    public void CreateBookingFood(BookingFood newFood) {
 
         String InsertCusQuery = ("INSERT INTO tblBookingFood (Adults_Meal, Kids_Meal, Drinks, Dessert, Decorations, Additional_Decorations) VALUES ('"
-                + AdultsMeal + "','" + Kids_meal + "','" + Drinks + "','" + Dessert +"','" +Decorations+"','" +Additional_Decorations+ "')");
+                + newFood.getAdults_Meal() + "','" + newFood.getKids_Meal() + "','" + newFood.getDrinks() + "','" + newFood.getDessert() +"','" +newFood.getDecorations()+"','" +newFood.getAdditional_Decorations()+ "')");
         
 
         try (Connection connection = DriverManager.getConnection(DAL.DBConnection);

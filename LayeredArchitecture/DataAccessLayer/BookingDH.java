@@ -16,12 +16,12 @@ import java.sql.Time;
 
 public class BookingDH {
     private static DataAccessLayer DAL = new DataAccessLayer();
-    public void CreateBooking(int iiBookingid, int iiCustomer_ID,String ssCustomer_Name,Date dDate_Created, String sBooking_status, int dEvent_ID,Date dEvent_date, Time tEvent_time,String sVenue_ID,int iTotal_Adults,int iTotal_Kids) {
+    public void CreateBooking(Booking newBooking) {
         // Code to write to Bookings tabel
         // Would be better to change the method to return true on succesfull create at a
         // later stage
         String InsertCusQuery = ("INSERT INTO tblBookings (Customer_ID, Customer_Name, Date_Created, Booking_Status,Event_ID,Event_Date,Event_Time,Venue_ID,Total_Adults,Total_Kids) VALUES ('"
-        + iiCustomer_ID + "','" + ssCustomer_Name + "','" + dDate_Created + "','" + sBooking_status +"','" + dEvent_ID+"','" + dEvent_date+"','" + tEvent_time+"','" + sVenue_ID+ "','" + iTotal_Adults+"','" + iTotal_Kids+"')");
+        + newBooking.getCustomerID() + "','" + newBooking.getCustomer_Name() + "','" + newBooking.getDateCreated() + "','" + newBooking.getBooking_Status() +"','" + newBooking.getEvent_ID()+"','" + newBooking.getEvent_Date()+"','" + newBooking.getEvent_Time()+"','" + newBooking.getVenue_ID()+ "','" + newBooking.getTotal_Adults()+"','" + newBooking.getTotal_Kids()+"')");
 
 
 try (Connection connection = DriverManager.getConnection(DAL.DBConnection);
@@ -50,7 +50,7 @@ catch (Exception e) {
 
             while (resultSet.next()) {
                 BookingList.add(new Booking(resultSet.getInt(1), resultSet.getInt(2), resultSet.getString(3),
-                        resultSet.getDate(4), resultSet.getString(5),resultSet.getInt(6),resultSet.getDate(7),resultSet.getTime(8),resultSet.getInt(9),resultSet.getInt(10),resultSet.getInt(11)));
+                        resultSet.getDate(4), resultSet.getString(5),resultSet.getInt(6),resultSet.getDate(7),resultSet.getString(8),resultSet.getInt(9),resultSet.getInt(10),resultSet.getInt(11)));
             }
 
         } catch (SQLException e) {
@@ -82,7 +82,7 @@ catch (Exception e) {
                 booking.setBooking_Status(resultSet.getString(5));       
                 booking.setEvent_ID(resultSet.getInt(6));
                 booking.setEvent_Date(resultSet.getDate(7));
-                booking.setEvent_Time(resultSet.getTime(8));
+                booking.setEvent_Time(resultSet.getString(8));
                 booking.setVenue_ID(resultSet.getInt(9));
                 booking.setTotal_Adults(resultSet.getInt(10));
                 booking.setTotal_Kids(resultSet.getInt(11));
