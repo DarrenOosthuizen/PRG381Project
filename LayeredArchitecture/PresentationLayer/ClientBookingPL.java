@@ -318,37 +318,17 @@ public class ClientBookingPL
             }
 
 
-
-               
-
-                
-
-
-
-
-
-
-                
-               
                
                DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date today = new Date();
                 Date todayWithZeroTime = formatter.parse(formatter.format(today));
                 
-               
-               
-               
-
             
-               
-               
-               
-               
                
                 bookingEvent.setCustomerID(customer.getCustomer_ID());
                bookingEvent.setCustomer_Name(customer.getCustomer_Name());
               bookingEvent.setDateCreated(todayWithZeroTime);
-               bookingEvent.setBooking_Status("Pending");
+               bookingEvent.setBooking_Status("Non-Confirmed");
                bookingEvent.setEvent_ID(iEventID);
               bookingEvent.setEvent_Date(eventDateReal);
                 bookingEvent.setEvent_Time(eventimeReal);
