@@ -80,7 +80,7 @@ public class ClientBookingPL
         
         long millis=System.currentTimeMillis();
         java.sql.Date DateCreated=new java.sql.Date(millis);
-        System.out.println(DateCreated);
+        
 
         
         boolean evenday = false;
@@ -197,7 +197,7 @@ public class ClientBookingPL
 
             }
             datecorrect=false;
-            
+            iEventYear = (iEventYear-1900);
             Date eventDateReal=new Date(iEventYear, iEventMonth, iEventDay);
             sqlDate = new java.sql.Date(eventDateReal.getTime());
 
@@ -442,7 +442,7 @@ public class ClientBookingPL
             bookingEvent.setCustomerID(CusOBJ.getCustomer_ID());
             bookingEvent.setCustomer_Name(CusOBJ.getCustomer_Name());
             bookingEvent.setDateCreated(DateCreated);
-            bookingEvent.setBooking_Status("Non-Confirmed");
+            bookingEvent.setBooking_Status("Not-Confirmed");
             bookingEvent.setEvent_ID(iEventID);
             bookingEvent.setEvent_Date(sqlDate);
             bookingEvent.setEvent_Time(sTime);
@@ -460,9 +460,7 @@ public class ClientBookingPL
             booking_food.setAdditional_Decorations(additionalDecor);
             booking_fooddh.CreateBookingFood(booking_food);
 
-            //!Wait for keypress to reset the while and start from the begining
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            br.readLine();
+            System.out.println("Booking Added");
         }
     }
       

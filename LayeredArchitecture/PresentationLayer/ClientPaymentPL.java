@@ -15,8 +15,7 @@ public class ClientPaymentPL
 {
     BookingDH bookingobj = new BookingDH();
     BookingFinanceDH bookingfinanceobj = new BookingFinanceDH();
-    List<Booking> lstBooking = bookingobj.ReadAllBookings();
-    List<BookingFinance> lstBookingFinance = bookingfinanceobj.ReadAllBookingFinance();
+    
     BookingFinance oldfinance = new BookingFinance();
     BookingFinance newfinance = new BookingFinance();
 
@@ -26,6 +25,8 @@ public class ClientPaymentPL
         boolean loggedout = false;
         while(loggedout==false)
         {
+            List<Booking> lstBooking = bookingobj.ReadAllBookings();
+    List<BookingFinance> lstBookingFinance = bookingfinanceobj.ReadAllBookingFinance();
             System.out.println("--------------------------------------------------------------------");
             System.out.println("                  Welcome to Booking Payment Menu                   ");
             System.out.println("--------------------------------------------------------------------");
@@ -58,6 +59,7 @@ public class ClientPaymentPL
                             {
                                 if(bookingfiitem.getBooking_ID()==bookingitem.getBookingID())
                                 {
+                                    oldfinance.setBooking_ID(bookingfiitem.getBooking_ID());
                                     oldfinance.setTotal_Price(bookingfiitem.getTotal_Price()); 
                                     oldfinance.setDeposit(bookingfiitem.getDeposit()); 
                                     oldfinance.setIs_Deposit_Paid(bookingfiitem.getIs_Deposit_Paid()); 
@@ -87,18 +89,35 @@ public class ClientPaymentPL
                                     System.out.println("Deposit Amount is : " + bookingfiitem.getDeposit());
                                     System.out.println("Deposit Paid : " + DepPaid);
                                     System.out.println("Full Amount Paid : " + FullPaid);
+                                    System.out.println("Amount Paid : " + bookingfiitem.getAmount_Paid());
                                     System.out.println("Amount To Pay : " + (bookingfiitem.getTotal_Price() - bookingfiitem.getAmount_Paid()));
-
+                                    System.out.println("--------------------------------------------------------------------");
                                     System.out.println("            Please Insert Amount you Wish to pay             ");
                                     Float ClientAmount = scannerPay.nextFloat();
 
                                     System.out.println("You are going to pay : " + ClientAmount);
+                                    if(bookingfiitem.getDeposit() < bookingfiitem.getAmount_Paid() + ClientAmount)
+                                    {
+                                        newfinance.setIs_Deposit_Paid(1); 
+                                    }
+                                    else
+                                    {
+                                        newfinance.setIs_Deposit_Paid(oldfinance.getIs_Deposit_Paid()); 
+                                    }
+                                    if(bookingfiitem.getTotal_Price() == bookingfiitem.getAmount_Paid() + ClientAmount)
+                                    {
+                                        newfinance.setIs_Fully_Paid(1); 
+                                    }
+                                    else
+                                    {
+                                        newfinance.setIs_Fully_Paid(oldfinance.getIs_Fully_Paid()); 
+                                    }
 
                                     newfinance.setTotal_Price(oldfinance.getTotal_Price()); 
                                     newfinance.setDeposit(oldfinance.getDeposit()); 
-                                    newfinance.setIs_Deposit_Paid(oldfinance.getIs_Deposit_Paid()); 
-                                    newfinance.setAmount_Paid(ClientAmount); 
-                                    newfinance.setIs_Fully_Paid(oldfinance.getIs_Fully_Paid()); 
+                                    
+                                    newfinance.setAmount_Paid(ClientAmount + bookingfiitem.getAmount_Paid()); 
+                                    
 
                                     bookingfinanceobj.UpdateBookingFinance(oldfinance, newfinance);
                                     System.out.println("Paid");
