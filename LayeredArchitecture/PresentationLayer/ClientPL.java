@@ -1,5 +1,6 @@
 package LayeredArchitecture.PresentationLayer;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -38,7 +39,7 @@ public class ClientPL
     
     public void ClientSignIn() 
     {
-         
+        ClientFound= false ;
         while(ClientFound==false)
         {
         try
@@ -94,7 +95,7 @@ public class ClientPL
         }
     }
 
-    public void ClientMenu() throws ParseException
+    public void ClientMenu() throws ParseException, IOException
     {
         boolean loggedout = false;
         while(loggedout==false)
@@ -125,7 +126,7 @@ public class ClientPL
             if(intClientChoice==1)
             {
                 ClientBookingPL newClientBooking = new ClientBookingPL();
-                newClientBooking.AddBooking();
+                newClientBooking.AddBooking(CustomerOBJ);
                 CorrectMenuOption = true ;
                         
             }
@@ -138,7 +139,9 @@ public class ClientPL
             }
             else if(intClientChoice==3)
             {
-
+                ClientUpdatePL newClientUpdate = new ClientUpdatePL();
+                newClientUpdate.UpdateMenu(CustomerOBJ);
+                CorrectMenuOption = true ;
             }
             else if(intClientChoice==0)
             {

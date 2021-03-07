@@ -2,6 +2,9 @@ package LayeredArchitecture.PresentationLayer;
 
 
 import java.beans.Statement;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Time;
 import java.text.*;
 import java.util.Date;
@@ -12,6 +15,7 @@ import java.util.Scanner;
 import javax.lang.model.util.ElementScanner6;
 
 import java.util.*;
+import java.util.Calendar;
 
 import LayeredArchitecture.BusinessLayer.Booking;
 import LayeredArchitecture.BusinessLayer.BookingFood;
@@ -28,14 +32,12 @@ public class ClientBookingPL
 {
     
 
-    public  void AddBooking() throws ParseException
+    public  void AddBooking(Customer CusOBJ) throws ParseException, IOException
     {
         
         Scanner scScanner = new Scanner(System.in);
-        //CustDetials.getCustomer_ID();
-        //CustDetials.getCustomer_Name();
-       // LocalDate.now();        
-        //String sBooking_Status="Pending";
+        CusOBJ.getCustomer_ID();
+        CusOBJ.getCustomer_Name();
         EventDH eventdh = new EventDH();
         VenueDH venuedh= new VenueDH();
         Venue venue= new Venue();
@@ -46,7 +48,7 @@ public class ClientBookingPL
         Booking bookingEvent= new Booking();
         BookingDH bookingeventDH= new BookingDH();
 
-        boolean beventid=false;
+        
         int iEventID=0;
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("                           Please Select an Event type                          ");
@@ -54,61 +56,158 @@ public class ClientBookingPL
         List<Event> AllEventList = eventdh.ReadAllEvent();
 
        for (Event eventItems : AllEventList) {
-            System.out.println("Event ID= "+eventItems.getEvent_ID()+" Event Type= "+eventItems.getEvent_Name());
+            System.out.println(eventItems.getEvent_ID()+ ". "+eventItems.getEvent_Name());
             icount++;
         }
        
-    
-        while (beventid=false) 
+        boolean beventid=false;
+        while (beventid==false) 
         {            
-        System.out.println("-----------------------------------------------------------------------------");
-        System.out.println("                         Please Input the value of event ID                          ");
-        iEventID=(scScanner.nextInt());
-        if (iEventID==0 || iEventID>icount) 
-        {
-            System.out.println("Please select valied event type");
-            break;
+            System.out.println("-----------------------------------------------------------------------------");
+            System.out.println("                         Please Input the value of event ID                          ");
+            iEventID=(scScanner.nextInt());
+            if (iEventID==0 || iEventID>icount) 
+            {
+                System.out.println("Please select valied event type");
+                break;
+            }
+            else
+            {
+                beventid=true;
+            }
         }
-        else
-        {
-            beventid=true;
-        }
-        
 
-        }
+        
+        long millis=System.currentTimeMillis();
+        java.sql.Date DateCreated=new java.sql.Date(millis);
+        System.out.println(DateCreated);
+
+        
+        
          
         
-
-    
-            System.out.println("-----------------------------------------------------------------------------");    
-            System.out.println("                           Please Enter Event Year                          ");
-            int sEventYear= scScanner.nextInt();
-
-            System.out.println("-----------------------------------------------------------------------------");    
-            System.out.println("                           Please Enter Event Month(Enter digit month)                          ");
-            int sEventMonth= scScanner.nextInt();
-
-            System.out.println("-----------------------------------------------------------------------------");    
-            System.out.println("                           Please Enter Event Day                        ");
-            int sEventDay= scScanner.nextInt();
+        boolean evenyear = false;
             
-            Date eventDateReal=new Date(sEventYear, sEventMonth, sEventDay);
+        int iEventYear = 0 ;
+        System.out.println("-----------------------------------------------------------------------------");    
+        System.out.println("                           Please Enter Event Year                          ");
+            while(evenyear==false)
+            {
+                iEventYear= scScanner.nextInt();
+                int iYear = String.valueOf(iEventYear).length();
+                if(iYear!=4)
+                {   
+                    System.out.println("Please Insert Valid Year");
+                }
+                else
+                {
+                    int year = Calendar.getInstance().get(Calendar.YEAR);
+                    if(iEventYear < year)
+                    {
+                        System.out.println("Please Insert a Current Year or Year in future");
+                    }
+                    else
+                    {
+                        evenyear = true ;
+                    }
+                }
+            }
 
+            boolean evenmonth = false;
+            int iEventMonth = 0;
+            System.out.println("-----------------------------------------------------------------------------");    
+            System.out.println("                Please Enter Event Month(Enter digit month)                  ");
+            while(evenmonth==false)
+            {
+                 iEventMonth= scScanner.nextInt();
+                int iMonth = String.valueOf(iEventMonth).length();
+                if(iMonth > 2)
+                {
+                    System.out.println("Please Insert Valid Month");
+                }
+                else
+                {
+                    if(iEventMonth == 0 || iEventMonth >12)
+                    {
+                        System.out.println("Please Insert Valid Month");   
+                    }
+                    else
+                    {
+                        int month = Calendar.getInstance().get(Calendar.MONTH);
+                        int year = Calendar.getInstance().get(Calendar.YEAR);
+                        
+                        if(iEventMonth < (month+1) && iEventYear == year)
+                        {
+                            System.out.println("Please Insert a Current Month or Month in future");
+                        }
+                        else
+                        {
+                            evenmonth = true ;
+                        }
+                    }
+                }
+            }
+
+            boolean evenday = false;
+            int iEventDay = 0;
+            System.out.println("-----------------------------------------------------------------------------");    
+            System.out.println("                           Please Enter Event Day                         ");
+            while(evenday==false)
+            {
+                iEventDay= scScanner.nextInt();
+                int iDay = String.valueOf(iEventDay).length();
+                if(iDay > 2)
+                {
+                    System.out.println("Please Insert Valid Date");
+                }
+                else
+                {
+                    if(iEventDay == 0 || iEventDay >31)
+                    {
+                        System.out.println("Please Insert Valid Date");   
+                    }
+                    else
+                    {
+                        int month = Calendar.getInstance().get(Calendar.MONTH);
+                        int year = Calendar.getInstance().get(Calendar.YEAR);
+                        int day = Calendar.getInstance().get(Calendar.DATE);
+                        if(iEventDay < (day + 1) && iEventMonth == (month+1) && iEventYear == year)
+                        {
+                            System.out.println("Please Insert a Date 1 Day Ahead or Date in future");
+                        }
+                        else
+                        {
+                            evenday = true ;
+                        }
+                    }
+                }
+
+            }
+            boolean datecorrect = false;
+            java.sql.Date sqlDate = null;;
+            while(datecorrect==false)
+            {
+            Date eventDateReal=new Date(iEventYear, iEventMonth, iEventDay);
+            sqlDate = new java.sql.Date(eventDateReal.getTime());
+            }
+            
            
             
             
             
            boolean eventime=false;
-           long sTime;
+           String sTime;
            Time eventimeReal;
                        
             
 
             System.out.println("-----------------------------------------------------------------------------");    
-            System.out.println("                           Please Enter Event Time(24h time)                         ");
+            System.out.println("                           Please Enter Event Time(HH:MM:SS)                         ");
+            Scanner timScanner = new Scanner(System.in) ;
+            sTime= timScanner.nextLine();         
+            
+            
 
-            sTime= (scScanner.nextLong());            
-            eventimeReal= new Time(sTime);
            
             
             System.out.println("-----------------------------------------------------------------------------");
@@ -121,7 +220,7 @@ public class ClientBookingPL
                 vicount++;
             }
             
-            boolean bVenueID=false;
+         
 
          
              
@@ -132,75 +231,60 @@ public class ClientBookingPL
         int iVenueID=0;
         boolean venueselected= false;
 
-        while (venueselected==false) {
-            
+        while (venueselected==false) 
+        {  
+            icount = 0;
            iVenueID=(scScanner.nextInt());
-    
-            
-    
-    
+
             for (Venue venueItems : AllVenueList) 
                 {
-                            
-                    if(iVenueID==(venueItems.getVenue_ID()))
-                    {
-                        iVenueID =(venueItems.getVenue_ID()) ; 
-                        venueselected=true;                 
-                    }
-                     else
-                    {
-                        if (iVenueID==(0)) 
-                        {
-                            System.out.println("-----------------------------------------------------------------------------");
-                            System.out.println("                         Please Enter Name of Venue                          ");
-                            String sVenueName =(scScanner.nextLine());
-                            System.out.println("-----------------------------------------------------------------------------");
-                            System.out.println("                         Please Enter Address of Venue                          ");
-                            String sVenueAdress =(scScanner.nextLine());
-                            System.out.println("-----------------------------------------------------------------------------");
-                            System.out.println("                         Please Enter Phone Number of Venue                          ");
-                            String sVenueNumber =(scScanner.nextLine()); 
-                            System.out.println("-----------------------------------------------------------------------------");
-                            System.out.println("                         Please Enter Email of Venue                          ");
-                            String sVenueEmail =(scScanner.nextLine()); 
-
-                            venueselected=true;
-
-
-                            venue.setVenue_Address(sVenueAdress);
-                            venue.setVenue_Email(sVenueEmail);
-                            venue.setVenue_Name(sVenueName);
-                            venue.setVenue_Phone_Number(sVenueNumber);
-                            venuedh.CreateVenue(venue);
-
-                            List<Venue> venueList=  venuedh.ReadAllVenues();
-
-                            for (Venue venue2 : venueList) {
-                                if (venue2.getVenue_Name().equals(sVenueName)) {
-                                    iVenueID=venue2.getVenue_ID();
-                                }
-                            }
-
-
-                           
-                            
-                            
-
-                        } else
-                        {
-                            System.out.println("venue not selected please try again");
-                        }
-
-                    }                  
-                    
+                    icount ++;
                 }
-            
+
+            if(iVenueID > icount)
+            {
+                System.out.println("Please enter valid ID");
+            }               
+            else if (iVenueID==(0)) 
+            {
+                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("                         Please Enter Name of Venue                          ");
+                String sVenueName =(scScanner.nextLine());
+                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("                         Please Enter Address of Venue                          ");
+                String sVenueAdress =(scScanner.nextLine());
+                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("                         Please Enter Phone Number of Venue                          ");
+                String sVenueNumber =(scScanner.nextLine()); 
+                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("                         Please Enter Email of Venue                          ");
+                String sVenueEmail =(scScanner.nextLine()); 
+                venueselected=true;
+                venue.setVenue_Address(sVenueAdress);
+                venue.setVenue_Email(sVenueEmail);
+                venue.setVenue_Name(sVenueName);
+                venue.setVenue_Phone_Number(sVenueNumber);
+                venuedh.CreateVenue(venue);
+                List<Venue> venueList=  venuedh.ReadAllVenues();
+                    for (Venue venue2 : venueList) 
+                    {
+                        if (venue2.getVenue_Name().equals(sVenueName)) 
+                        {
+                            iVenueID=venue2.getVenue_ID();
+                        }
+                    }
             }
+            else 
+            {
+                venueselected= true ;
+            }                  
+        }
 
                 boolean badults=false;
                 int iAdults_meal=0;
                 int iTotalAdults=0;
-                while (badults=false) {                            
+                while (badults==false) 
+                {                            
                 System.out.println("-----------------------------------------------------------------------------");
                 System.out.println("                         Please Input the Amount of Adults                          ");
                 
@@ -221,7 +305,7 @@ public class ClientBookingPL
             int iTotalKids=0;
             boolean bkids=false;
 
-            while (bkids=false) {
+            while (bkids==false) {
                 
             
                 System.out.println("-----------------------------------------------------------------------------");
@@ -234,29 +318,33 @@ public class ClientBookingPL
                }
                else{
                 iKids_meal=1;
+                bkids = true;
                }
             }
 
             int menudrinks=0;
             boolean bdriks=false;
 
-            while (bdriks=false) {
+            
                 
             
                System.out.println("-----------------------------------------------------------------------------");
                 System.out.println("                         Would you like Drinks menu?(yes/no)                        ");
-               
+            while (bdriks==false) 
+            {
                 String drinks=scScanner.nextLine();
 
-                if (drinks.equalsIgnoreCase("yes")) {
+                if (drinks.equalsIgnoreCase("YES")) {
                     menudrinks=1;
                     bdriks=true;
                 }
-                else if (drinks.equalsIgnoreCase("no"))                              
+                else if (drinks.equalsIgnoreCase("NO"))                              
                 {
                     menudrinks=0;
                     bdriks=true;
-                } else {
+                } 
+                else 
+                {
                     System.out.println("Please only type yes or no");
                     bdriks=false;
                 }
@@ -267,21 +355,26 @@ public class ClientBookingPL
                 int menudessert=0;
 
 
-                while (bDessert=false) {
+               
                     
                 
                 System.out.println("-----------------------------------------------------------------------------");
                 System.out.println("                         Would you like Dessert menu?(yes/no)                         ");
 
-                
+                while (bDessert==false) 
+                {
                 String dessert=scScanner.nextLine();
                 if (dessert.equalsIgnoreCase("yes")) {
                     menudessert=1;
+                    bDessert = true ;
                 }
                 else if(dessert.equalsIgnoreCase("no"))
                 {
                     menudessert=0;
-                } else {
+                    bDessert = true ;
+                } 
+                else if(!dessert.equalsIgnoreCase("NO") && !dessert.equalsIgnoreCase("YES"))
+                {
                     System.out.println("Please only type yes or no");
                     bDessert=false;
                 }
@@ -290,16 +383,17 @@ public class ClientBookingPL
 
             int iDecorations=0;
             String Decorations="";  
-            String additionalDecor="";
+            String additionalDecor="None";
             boolean bDecor=false;
-            while(bDecor=false)
+            while(bDecor==false)
             {
                 System.out.println("-----------------------------------------------------------------------------");
                 System.out.println("                         Would you like Decorations?(yes/no)                         ");
                 
                 
                 Decorations=scScanner.nextLine();
-                if (Decorations.equalsIgnoreCase("yes")) {
+                if (Decorations.equalsIgnoreCase("yes")) 
+                {
                     iDecorations=1;
                     System.out.println("-----------------------------------------------------------------------------");
                     System.out.println("                         Please specify Additional Decorations.                     ");
@@ -316,41 +410,34 @@ public class ClientBookingPL
                     System.out.println("only enter yes or no");
                 }
             }
-
-
+ 
                
-               DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                Date today = new Date();
-                Date todayWithZeroTime = formatter.parse(formatter.format(today));
-                
-            
-               
-                bookingEvent.setCustomerID(customer.getCustomer_ID());
-               bookingEvent.setCustomer_Name(customer.getCustomer_Name());
-              bookingEvent.setDateCreated(todayWithZeroTime);
-               bookingEvent.setBooking_Status("Non-Confirmed");
-               bookingEvent.setEvent_ID(iEventID);
-              bookingEvent.setEvent_Date(eventDateReal);
-                bookingEvent.setEvent_Time(eventimeReal);
-               bookingEvent.setVenue_ID(iVenueID);
-               bookingEvent.setTotal_Adults(iTotalAdults);
-               bookingEvent.setTotal_Kids(iTotalKids);
-               
-               //bookingeventDH.CreateBooking(iiBookingid, iiCustomer_ID, ssCustomer_Name, dDate_Created, sBooking_status, dEvent_ID, dEvent_date, tEvent_time, sVenue_ID, iTotal_Adults, iTotal_Kids);
+            bookingEvent.setCustomerID(CusOBJ.getCustomer_ID());
+            bookingEvent.setCustomer_Name(CusOBJ.getCustomer_Name());
+            bookingEvent.setDateCreated(DateCreated);
+            bookingEvent.setBooking_Status("Non-Confirmed");
+            bookingEvent.setEvent_ID(iEventID);
+            bookingEvent.setEvent_Date(sqlDate);
+            bookingEvent.setEvent_Time(sTime);
+            bookingEvent.setVenue_ID(iVenueID);
+            bookingEvent.setTotal_Adults(iTotalAdults);
+            bookingEvent.setTotal_Kids(iTotalKids);
 
-               booking_food.setAdults_Meal(iAdults_meal);
-               booking_food.setKids_Meal(iKids_meal);
-               booking_food.setDrinks(menudrinks);
-               booking_food.setDessert(menudessert);
-               booking_food.setDecorations(iDecorations);
-               booking_food.setAdditional_Decorations(additionalDecor);
-                //booking_fooddh.CreateBookingFood(AdultsMeal, Kids_meal, Drinks, Dessert, Decorations, Additional_Decorations);
+            bookingeventDH.CreateBooking(bookingEvent);
 
+            booking_food.setAdults_Meal(iAdults_meal);
+            booking_food.setKids_Meal(iKids_meal);
+            booking_food.setDrinks(menudrinks);
+            booking_food.setDessert(menudessert);
+            booking_food.setDecorations(iDecorations);
+            booking_food.setAdditional_Decorations(additionalDecor);
+            booking_fooddh.CreateBookingFood(booking_food);
 
-        
-        
-       
+            //!Wait for keypress to reset the while and start from the begining
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            br.readLine();
+        }
 
-    }   
+      
 
 }
