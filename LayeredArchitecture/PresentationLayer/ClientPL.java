@@ -22,7 +22,7 @@ public class ClientPL
     private static UserDH UserDH = new UserDH();
     private static CustomerUserDH CusUsDh = new CustomerUserDH();
     private static CustomerDH CusDH = new CustomerDH();
-    private static Customer CustomerOBJ = new Customer();
+    public  static Customer CustomerOBJ = new Customer();
     private static int UserID;
     boolean ClientFound = false ;
     public void ClientSignIn() 
@@ -89,11 +89,13 @@ public class ClientPL
         System.out.println("Client Menu");
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("                           Welcome to Client Portal                           ");
+        System.out.println(CustomerOBJ.getCustomer_Name() + " " + CustomerOBJ.getCustomer_Surname() + CustomerOBJ.getCustomer_ID());
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("                  Please Select Option from the menu below:                  ");
         System.out.println("-----------------------------------------------------------------------------");
-        System.out.println("1 : New Booking");
-        System.out.println("2 : Login in as Employee");
+        System.out.println("1 : Add New Booking");
+        System.out.println("2 : Check Status of Booking");
+        System.out.println("3 : Update Menu of Booking");
         System.out.println("-----------------------------------------------------------------------------");
     }
 
