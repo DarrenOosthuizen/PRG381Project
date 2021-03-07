@@ -27,9 +27,9 @@ public class ClientBookingPL
         
         List<Event> AllEventList = event.ReadAllEvent();
 
-       // for (Event eventItems : AllEventList) {
-      //      System.out.println(eventItems);
-       // }
+       for (Event eventItems : AllEventList) {
+            System.out.println(eventItems);
+        }
         
        
 

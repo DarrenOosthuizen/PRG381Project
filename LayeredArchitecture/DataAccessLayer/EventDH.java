@@ -39,7 +39,7 @@ public class EventDH {
             resultSet = statement.executeQuery(selectSql);
 
             while (resultSet.next()) {
-                EventList.add(new Event(resultSet.getInt(0), resultSet.getString(1)));
+                EventList.add(new Event(resultSet.getInt(1), resultSet.getString(2)));
             }
 
         } catch (SQLException e) {
