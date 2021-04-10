@@ -1,1 +1,1 @@
-DBCC CHECKIDENT ("tblBookings", RESEED, 1);
+DBCC CHECKIDENT ("tblServiceLevelAgreement", RESEED, 1);
